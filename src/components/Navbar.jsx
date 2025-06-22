@@ -79,6 +79,13 @@ const Navbar = () => {
                         )}
                     </svg>
                 </button>
+                <a
+                    href="/Med-Mokhtar-Nasrali-Resume.pdf"
+                    download
+                    className="ml-6 px-4 py-2 bg-teal-500 hover:bg-teal-600 text-white rounded-md font-semibold transition hidden md:inline-block"
+                >
+                    Download Resume
+                </a>
             </div>
 
             {/* Mobile menu */}
