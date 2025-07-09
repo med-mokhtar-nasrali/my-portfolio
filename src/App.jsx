@@ -177,7 +177,7 @@ Skills: Python · Flask · MySQL · Stripe Connect · HTML · Trello · Bootstra
             <a href="https://www.linkedin.com/in/mohamed-mokhtar-nasrali-458144339/" target="_blank" rel="noreferrer">
               <FaLinkedin />
             </a>
-            <a href="mailto:mokhtarbackup03@email.com">
+            <a href="mailto:mokhtarbackup03@gmail.com">
               <FaEnvelope />
             </a>
           </div>
