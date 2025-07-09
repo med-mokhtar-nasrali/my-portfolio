@@ -7,6 +7,7 @@ import Skills from "./components/Skills";
 import Licenses from "./components/Licenses";
 import Navbar from "./components/Navbar";
 import SimpleFAQBot from "./components/SimpleFAQBot";
+import ContactForm from "./components/ContactForm";
 
 
 
@@ -161,6 +162,10 @@ Skills: Python · Flask · MySQL · Stripe Connect · HTML · Trello · Bootstra
           </div>
         </section>
 
+        <section id="contact" className="py-20 px-4">
+          <ContactForm />
+        </section>
+
 
         {/* CONTACT */}
         <section id="contact" className="py-20 flex flex-col items-center gap-4">
@@ -176,6 +181,8 @@ Skills: Python · Flask · MySQL · Stripe Connect · HTML · Trello · Bootstra
               <FaEnvelope />
             </a>
           </div>
+
+
         </section>
         <SimpleFAQBot />
       </main>

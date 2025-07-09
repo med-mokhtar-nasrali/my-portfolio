@@ -3,16 +3,20 @@ import { FaComments, FaTimes } from "react-icons/fa";
 
 const faqData = [
     {
+        question: "Who i am?",
+        answer: "I am a Full Stack Developer with expertise in building web applications. I specialize in both frontend and backend development, creating seamless user experiences.I have a passion for coding and love to solve complex problems with elegant solutions."
+    },
+    {
         question: "What technologies do you use?",
         answer: "I use React, Node.js, Angular, Spring Boot, Python, Flask, and more."
     },
     {
-        question: "Where can I see your projects?",
-        answer: "Scroll to the Projects section on this page."
+        question: "What are my certifications?",
+        answer: "I have a software development certificate from Coding Dojo Africa."
     },
     {
-        question: "How to contact you?",
-        answer: "You can use the email or social links in the Contact section below."
+        question: "What kind of projects have you worked on?",
+        answer: "I’ve worked on a variety of web applications ranging from e-commerce platforms to community forums and recipe-sharing apps. My projects often involve full-stack development using technologies like React, Angular, Node.js, Spring Boot, and Python. For example, I developed Freshka, a platform connecting farmers directly to clients, and CookMe, a recipe discovery app with real-time chat features. You can check out my GitHub for more details!"
     }
 ];
 
