@@ -6,6 +6,7 @@ import ProjectCard from "./components/ProjectCard";
 import Skills from "./components/Skills";
 import Licenses from "./components/Licenses";
 import Navbar from "./components/Navbar";
+import SimpleFAQBot from "./components/SimpleFAQBot";
 
 
 
@@ -176,6 +177,7 @@ Skills: Python · Flask · MySQL · Stripe Connect · HTML · Trello · Bootstra
             </a>
           </div>
         </section>
+        <SimpleFAQBot />
       </main>
     </>
   );
