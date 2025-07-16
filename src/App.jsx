@@ -83,28 +83,32 @@ function App() {
         {/* PROJECTS */}
         <section id="projects" className="py-20 px-4">
           <h2 className="text-3xl font-bold text-center mb-12">Projects</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <ProjectCard
-              title="Freshka"
-              desc="A Web Application serving as a direct connection between farmers and clients. This application allows farmers to sell their fresh products directly to clients and provide flexible fees through discounts. The platform also increases farmers' engagement through a forum which allows chatting, posting, or commenting creating a sense of community."
-              image="/freskhabg.png"
-              fullDesc={`• UI/UX Design : Developed user-friendly wireframes in Figma facilitating the task distribution and ensuring a functional and optimized user experience.
+          <div className="flex flex-wrap justify-center gap-6">
+            <div className="w-full md:w-[48%] lg:w-[31%]">
+              <ProjectCard
+                title="Freshka"
+                desc="A Web Application serving as a direct connection between farmers and clients. This application allows farmers to sell their fresh products directly to clients and provide flexible fees through discounts. The platform also increases farmers' engagement through a forum which allows chatting, posting, or commenting creating a sense of community."
+                image="/freskhabg.png"
+                fullDesc={`• UI/UX Design : Developed user-friendly wireframes in Figma facilitating the task distribution and ensuring a functional and optimized user experience.
 
  • Full-Stack Development : Developed the entirety of Front and Back-end secured CRUD web application with login and registration, homepage, user pages and forum.
 
  • Debugging & Deployment : Resolved merging issues in a timely manner ensuring the smooth running of the platform.
 
 Skills: Java · Spring Boot · Spring Security · Angular · HTML · Cascading Style Sheets (CSS) · JavaScript · TypeScript · Bootstrap (Framework) · MySQL · Trello · Figma · Canva · Git · GitHub.`}
-              githubLink="https://github.com/jabranebenhadjmessaoud/JavaFinalProject"
-            />
-            <ProjectCard
-              title="CookMe"
-              desc="A web application that helps users discover and create recipes by solving every day common challenges like lack of ingredients
+                githubLink="https://github.com/jabranebenhadjmessaoud/JavaFinalProject"
+              />
+            </div>
+
+            <div className="w-full md:w-[48%] lg:w-[31%]">
+              <ProjectCard
+                title="CookMe"
+                desc="A web application that helps users discover and create recipes by solving every day common challenges like lack of ingredients
 according to dietary needs/preferences , or time constraints. Our platform provides a seamless and dynamic user experience
 allowing them to get tailored recipes with the ability to chat with users providing further support and fostering community
 engagement."
-              image="/cookme.png"
-              fullDesc={`• Visitors:
+                image="/cookme.png"
+                fullDesc={`• Visitors:
 • Access to the homepage and general platform overview.
 Registered Users:
 • Full access to search recipes, save favorites, leave comments and ratings, and chat with others.
@@ -130,16 +134,18 @@ Key Features:
 • Comments and Ratings: Users can comment on and rate posts to share feedback and enhance the community experience. 
 Built with Node.js, Express.js, Angular, Socket.io, and MongoDB.
 
-Skills: Angular · Express.js · Nodejs · TypeScript · MongoDB · HTML · Socket.io · Trello · Bootstrap (Framework) · JavaScript · Angular Material · Figma · Cascading Style Sheets (CSS)`
-              }
-              githubLink="https://github.com/med-mokhtar-nasrali/MERN-Project"
-            />
-            <ProjectCard
-              title="TalentNest"
-              desc="A web application designed to tackle challenges in employment and freelancing platforms, such as unemployment, platform
+Skills: Angular · Express.js · Nodejs · TypeScript · MongoDB · HTML · Socket.io · Trello · Bootstrap (Framework) · JavaScript · Angular Material · Figma · Cascading Style Sheets (CSS)`}
+                githubLink="https://github.com/med-mokhtar-nasrali/MERN-Project"
+              />
+            </div>
+
+            <div className="w-full md:w-[48%] lg:w-[31%]">
+              <ProjectCard
+                title="TalentNest"
+                desc="A web application designed to tackle challenges in employment and freelancing platforms, such as unemployment, platform
               saturation, trust issues, and poor quality services."
-              image="/talentnest.png"
-              fullDesc={`Visitors:
+                image="/talentnest.png"
+                fullDesc={`Visitors:
 •Design the homepage and implement intuitive navigation for seamless platform exploration.
 •Provide easy access to FAQ and support resources.
 Freelancers:
@@ -156,10 +162,46 @@ Built with HTML, CSS,Bootstrap,Python, Flask, and SQL
 A web application designed to tackle challenges in employment and freelancing platforms, such as unemployment, platform saturation, trust issues, and poor quality services. Visitors: •Design the homepage and implement intuitive navigation for seamless platform exploration. •Provide easy access to FAQ and support resources. Freelancers: •Enable profile creation and portfolio showcase with dynamic forms. •Facilitate job application workflows to connect freelancers with opportunities. Recruiters: •Create job posting functionality for recruiters to list opportunities efficiently. •Develop a freelancer matching algorithm to recommend suitable candidates based on skills and history. •Implement a ratings and reviews system for feedback on completed work. Admins: •Manage users and ensure smooth platform operation with an intuitive dashboard. •Integrate analytics and reporting features for tracking platform performance. Built with HTML, CSS,Bootstrap,Python, Flask, and SQL
 
 Skills: Python · Flask · MySQL · Stripe Connect · HTML · Trello · Bootstrap (Framework) · JavaScript · Figma · Jinja · Cascading Style Sheets (CSS)`}
-              githubLink="https://github.com/med-mokhtar-nasrali/TalentNest"
-            />
+                githubLink="https://github.com/med-mokhtar-nasrali/TalentNest"
+              />
+            </div>
 
+            <div className="w-full md:w-[48%] lg:w-[31%]">
+              <ProjectCard
+                title="Smart Grocery"
+                desc="A MERN stack web app for efficient pantry and grocery list management. Features secure authentication, real-time updates, and user-friendly design built with React and Tailwind CSS. The backend uses Node.js, Express, and MongoDB for data persistence and JWT-based user sessions."
+                image="/smartgrocery.png"
+                fullDesc={`Smart Grocery is a full-stack web application designed to simplify grocery management. It allows users to track pantry items with expiration dates, generate intelligent shopping lists, and receive alerts to minimize food waste. The app features user authentication, a clean UI with React, and a scalable backend.
+
+Technologies & Languages Used
+Frontend:
+
+React.js (with React Router for navigation)
+
+Tailwind CSS (for styling)
+
+Axios (for API calls)
+
+Backend:
+
+Node.js with Express.js (RESTful API)
+
+MongoDB & Mongoose (database and ODM)
+
+JWT (JSON Web Tokens) for authentication
+
+bcrypt (password hashing)
+
+Other:
+
+Vite (frontend build tool and dev server)
+
+Git (version control)`}
+                githubLink=""
+              />
+            </div>
           </div>
+
         </section>
 
         <section id="contact" className="py-20 px-4">

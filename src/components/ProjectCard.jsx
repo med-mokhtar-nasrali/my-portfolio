@@ -1,7 +1,29 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const ProjectCard = ({ title, desc, image, fullDesc, githubLink }) => {
     const [isOpen, setIsOpen] = useState(false);
+
+    // Close modal on ESC key press
+    useEffect(() => {
+        if (!isOpen) return;
+
+        const onKeyDown = (e) => {
+            if (e.key === "Escape") {
+                setIsOpen(false);
+            }
+        };
+        document.addEventListener("keydown", onKeyDown);
+        return () => document.removeEventListener("keydown", onKeyDown);
+    }, [isOpen]);
+
+    // Prevent background scroll when modal open
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "";
+        }
+    }, [isOpen]);
 
     return (
         <>
@@ -18,11 +40,37 @@ const ProjectCard = ({ title, desc, image, fullDesc, githubLink }) => {
                 )}
                 <h3 className="text-xl font-semibold mb-2">{title}</h3>
                 <p className="text-gray-300 text-sm">{desc}</p>
+                <button
+                    onClick={(e) => {
+                        e.stopPropagation(); // Prevent card onClick firing
+                        setIsOpen(true);
+                    }}
+                    className="
+            px-4 py-2
+            sm:px-6 sm:py-3
+            bg-teal-500 hover:bg-teal-600
+            rounded-md
+            text-white
+            font-semibold
+            text-sm
+            sm:text-base
+            w-full sm:w-auto
+            mt-4
+            transition
+          "
+                    aria-haspopup="dialog"
+                    aria-expanded={isOpen}
+                >
+                    More Details
+                </button>
             </div>
 
             {/* Modal Overlay */}
             {isOpen && (
                 <div
+                    role="dialog"
+                    aria-modal="true"
+                    aria-labelledby="modal-title"
                     onClick={() => setIsOpen(false)}
                     className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4"
                 >
@@ -31,7 +79,12 @@ const ProjectCard = ({ title, desc, image, fullDesc, githubLink }) => {
                         onClick={(e) => e.stopPropagation()}
                         className="bg-gray-900 rounded-xl max-w-full sm:max-w-3xl p-6 sm:p-8 text-gray-200 shadow-xl animate-fadeIn scale-up overflow-y-auto max-h-[90vh]"
                     >
-                        <h2 className="text-2xl sm:text-3xl font-bold mb-4">{title}</h2>
+                        <h2
+                            id="modal-title"
+                            className="text-2xl sm:text-3xl font-bold mb-4"
+                        >
+                            {title}
+                        </h2>
                         {image && (
                             <img
                                 src={image}
@@ -39,7 +92,9 @@ const ProjectCard = ({ title, desc, image, fullDesc, githubLink }) => {
                                 className="w-full max-h-56 sm:max-h-72 object-cover rounded-lg mb-6 mx-auto"
                             />
                         )}
-                        <p className="text-sm sm:text-base whitespace-pre-line">{fullDesc || desc}</p>
+                        <p className="text-sm sm:text-base whitespace-pre-line">
+                            {fullDesc || desc}
+                        </p>
 
                         {githubLink && (
                             <a
