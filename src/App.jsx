@@ -146,7 +146,7 @@ Technologies & Languages Used:
 Frontend: React.js, Tailwind CSS, Axios
 Backend: Node.js, Express.js, MongoDB, JWT
 Other: Vite, Git`}
-              githubLink=""
+              githubLink="https://github.com/med-mokhtar-nasrali/Smart-Grocery-List-Pantry-Manager"
             />
           </div>
         </section>
