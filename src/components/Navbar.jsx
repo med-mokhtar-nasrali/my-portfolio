@@ -39,20 +39,33 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="fixed top-0 left-0 right-0 bg-gray-900 bg-opacity-80 backdrop-blur-md z-50 shadow-md">
+        <nav className="fixed top-0 left-0 right-0 bg-gray-900 bg-opacity-90 backdrop-blur-lg z-50 shadow-lg">
             <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-                <div className="text-2xl font-bold text-teal-400 cursor-pointer" onClick={() => scrollToSection("about")}>
+                <div
+                    className="text-2xl font-extrabold text-teal-400 cursor-pointer select-none"
+                    onClick={() => scrollToSection("about")}
+                    aria-label="Scroll to About section"
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") scrollToSection("about");
+                    }}
+                >
                     MyPortfolio
                 </div>
 
                 {/* Desktop menu */}
-                <ul className="hidden md:flex space-x-8 text-gray-300">
+                <ul className="hidden md:flex space-x-10 text-gray-300 font-medium">
                     {navLinks.map(({ id, label }) => (
                         <li
                             key={id}
-                            className={`cursor-pointer hover:text-teal-400 transition ${activeId === id ? "text-teal-400 font-semibold" : ""
+                            className={`cursor-pointer transition-colors duration-300 hover:text-teal-400 ${activeId === id ? "text-teal-400 border-b-2 border-teal-400 font-semibold" : ""
                                 }`}
                             onClick={() => scrollToSection(id)}
+                            tabIndex={0}
+                            onKeyDown={(e) => {
+                                if (e.key === "Enter" || e.key === " ") scrollToSection(id);
+                            }}
+                            aria-current={activeId === id ? "page" : undefined}
                         >
                             {label}
                         </li>
@@ -61,9 +74,10 @@ const Navbar = () => {
 
                 {/* Mobile menu button */}
                 <button
-                    className="md:hidden text-gray-300 focus:outline-none"
+                    className="md:hidden text-gray-300 focus:outline-none focus:ring-2 focus:ring-teal-400 rounded"
                     onClick={() => setMenuOpen(!menuOpen)}
-                    aria-label="Toggle menu"
+                    aria-label="Toggle mobile menu"
+                    aria-expanded={menuOpen}
                 >
                     <svg
                         className="w-8 h-8"
@@ -71,18 +85,31 @@ const Navbar = () => {
                         stroke="currentColor"
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
                     >
                         {menuOpen ? (
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M6 18L18 6M6 6l12 12"
+                            />
                         ) : (
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8h16M4 16h16" />
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M4 8h16M4 16h16"
+                            />
                         )}
                     </svg>
                 </button>
+
+                {/* Resume button */}
                 <a
                     href="/Med-Mokhtar-Nasrali-Resume.pdf"
                     download
-                    className="ml-6 px-4 py-2 bg-teal-500 hover:bg-teal-600 text-white rounded-md font-semibold transition hidden md:inline-block"
+                    className="ml-6 px-5 py-2 bg-gradient-to-r from-teal-500 to-blue-500 hover:from-teal-600 hover:to-blue-600 text-white rounded-md font-semibold transition-shadow shadow-md hover:shadow-lg hidden md:inline-block select-none"
                 >
                     Download Resume
                 </a>
@@ -90,13 +117,18 @@ const Navbar = () => {
 
             {/* Mobile menu */}
             {menuOpen && (
-                <ul className="md:hidden bg-gray-900 bg-opacity-90 backdrop-blur-md flex flex-col space-y-2 py-4 px-6 text-gray-300">
+                <ul className="md:hidden bg-gray-900 bg-opacity-95 backdrop-blur-lg flex flex-col space-y-3 py-4 px-6 text-gray-300 font-medium">
                     {navLinks.map(({ id, label }) => (
                         <li
                             key={id}
-                            className={`cursor-pointer hover:text-teal-400 transition ${activeId === id ? "text-teal-400 font-semibold" : ""
+                            className={`cursor-pointer transition-colors duration-300 hover:text-teal-400 ${activeId === id ? "text-teal-400 font-semibold" : ""
                                 }`}
                             onClick={() => scrollToSection(id)}
+                            tabIndex={0}
+                            onKeyDown={(e) => {
+                                if (e.key === "Enter" || e.key === " ") scrollToSection(id);
+                            }}
+                            aria-current={activeId === id ? "page" : undefined}
                         >
                             {label}
                         </li>

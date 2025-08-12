@@ -1,35 +1,38 @@
 import { useEffect, useState, useRef } from "react";
+import { FaLightbulb, FaCode, FaUsers } from "react-icons/fa";
 
 const skillsData = [
-    { name: "Frontend", level: 90, color: "bg-teal-500" },
-    { name: "Backend", level: 80, color: "bg-purple-500" },
-    { name: "Databases", level: 75, color: "bg-yellow-500" },
-    { name: "Fullstack", level: 85, color: "bg-pink-500" },
+    {
+        name: "Problem Solving",
+        description: "I approach challenges with creativity and logic, finding efficient solutions.",
+        icon: <FaLightbulb className="text-yellow-400 text-5xl" />,
+    },
+    {
+        name: "Clean Code",
+        description: "Writing maintainable, readable, and scalable code is my top priority.",
+        icon: <FaCode className="text-teal-400 text-5xl" />,
+    },
+    {
+        name: "Collaboration",
+        description: "I thrive in team environments, ensuring smooth communication and workflow.",
+        icon: <FaUsers className="text-pink-400 text-5xl" />,
+    },
 ];
 
 const Skills = () => {
-    const [progress, setProgress] = useState(skillsData.map(() => 0));
+    const [visible, setVisible] = useState(false);
     const sectionRef = useRef(null);
-    const [hasAnimated, setHasAnimated] = useState(false);
 
     useEffect(() => {
         if (!sectionRef.current) return;
 
         const observer = new IntersectionObserver(
             ([entry]) => {
-                if (entry.isIntersecting && !hasAnimated) {
-                    setHasAnimated(true);
-                    let current = 0;
-                    const animate = () => {
-                        if (current > 100) return;
-                        setProgress(skillsData.map(skill => (skill.level * current) / 100));
-                        current += 2;
-                        setTimeout(animate, 20);
-                    };
-                    animate();
+                if (entry.isIntersecting) {
+                    setVisible(true);
                 }
             },
-            { threshold: 0.3 } // trigger when 30% visible
+            { threshold: 0.3 }
         );
 
         observer.observe(sectionRef.current);
@@ -37,28 +40,28 @@ const Skills = () => {
         return () => {
             if (sectionRef.current) observer.unobserve(sectionRef.current);
         };
-    }, [hasAnimated]);
+    }, []);
 
     return (
         <section
             id="skills"
             ref={sectionRef}
-            className="py-20 px-4 max-w-4xl mx-auto text-center"
+            className="py-20 px-6 max-w-6xl mx-auto text-center"
         >
-            <h2 className="text-3xl font-bold mb-12">My Skills</h2>
-            <div className="space-y-8">
+            <h2 className="text-4xl font-bold mb-16">What I Bring to the Table</h2>
+
+            <div className="grid md:grid-cols-3 gap-10">
                 {skillsData.map((skill, i) => (
-                    <div key={skill.name} className="text-left">
-                        <div className="flex justify-between mb-1">
-                            <span className="font-semibold text-lg">{skill.name}</span>
-                            <span className="font-mono">{Math.round(progress[i])}%</span>
-                        </div>
-                        <div className="w-full h-6 rounded-full bg-gray-700 overflow-hidden">
-                            <div
-                                style={{ width: `${progress[i]}%` }}
-                                className={`${skill.color} h-full rounded-full transition-width duration-300`}
-                            ></div>
-                        </div>
+                    <div
+                        key={skill.name}
+                        className={`p-8 rounded-2xl border border-gray-700 bg-gray-900/50 backdrop-blur-md shadow-lg 
+                            transform transition-all duration-700 
+                            ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+                        style={{ transitionDelay: `${i * 150}ms` }}
+                    >
+                        <div className="mb-6">{skill.icon}</div>
+                        <h3 className="text-2xl font-semibold mb-4">{skill.name}</h3>
+                        <p className="text-gray-300">{skill.description}</p>
                     </div>
                 ))}
             </div>

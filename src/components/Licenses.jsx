@@ -40,10 +40,10 @@ const Licenses = () => {
         <section
             id="licenses"
             ref={sectionRef}
-            className="py-20 px-4 max-w-4xl mx-auto text-center"
+            className="py-20 px-4 max-w-5xl mx-auto text-center"
         >
             <h2 className="text-3xl font-bold mb-12">Licenses & Certifications</h2>
-            <div className="space-y-8">
+            <div className="grid md:grid-cols-2 gap-8">
                 {licensesData.map(({ title, issuer, date, link }, i) => (
                     <a
                         key={i}

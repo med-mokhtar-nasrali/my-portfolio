@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { FaFolderOpen, FaGithub } from "react-icons/fa";
 
 const ProjectCard = ({ title, desc, image, fullDesc, githubLink }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -29,40 +30,91 @@ const ProjectCard = ({ title, desc, image, fullDesc, githubLink }) => {
         <>
             <div
                 onClick={() => setIsOpen(true)}
-                className="bg-white/10 p-6 rounded-2xl shadow-lg backdrop-blur-md transition transform hover:-translate-y-2 hover:shadow-2xl animate-fadeIn flex flex-col items-center cursor-pointer"
-            >
-                {image && (
-                    <img
-                        src={image}
-                        alt={title}
-                        className="w-full max-h-56 object-cover rounded-lg mb-6 mx-auto"
-                    />
-                )}
-                <h3 className="text-xl font-semibold mb-2">{title}</h3>
-                <p className="text-gray-300 text-sm">{desc}</p>
-                <button
-                    onClick={(e) => {
-                        e.stopPropagation(); // Prevent card onClick firing
+                tabIndex={0}
+                onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
                         setIsOpen(true);
-                    }}
-                    className="
-            px-4 py-2
-            sm:px-6 sm:py-3
-            bg-teal-500 hover:bg-teal-600
-            rounded-md
-            text-white
-            font-semibold
-            text-sm
-            sm:text-base
-            w-full sm:w-auto
-            mt-4
-            transition
-          "
-                    aria-haspopup="dialog"
-                    aria-expanded={isOpen}
-                >
-                    More Details
-                </button>
+                    }
+                }}
+                aria-label={`Open details for project: ${title}`}
+                className="
+          bg-gradient-to-tr from-gray-800 to-gray-900
+          w-96 h-[26rem] rounded-2xl shadow-xl
+          backdrop-blur-md cursor-pointer
+          flex flex-col
+          p-6
+          transition-transform duration-300 ease-in-out
+          hover:scale-[1.04] hover:shadow-2xl
+          focus:outline-none focus:ring-4 focus:ring-teal-400
+        "
+            >
+                {/* Image or Folder Icon */}
+                <div className="flex justify-center mb-4 h-40">
+                    {image ? (
+                        <img
+                            src={image}
+                            alt={title}
+                            className="object-cover rounded-xl shadow-md max-h-full max-w-full"
+                            loading="lazy"
+                        />
+                    ) : (
+                        <FaFolderOpen className="text-teal-400 text-9xl self-center" />
+                    )}
+                </div>
+
+                {/* Title */}
+                <h3 className="text-2xl font-bold text-center text-white mb-2 truncate">
+                    {title}
+                </h3>
+
+                {/* Short Description */}
+                <p className="text-gray-300 text-center text-sm flex-grow mb-4 line-clamp-5">
+                    {desc}
+                </p>
+
+                {/* Bottom Section */}
+                <div className="flex justify-center gap-4">
+                    {githubLink && (
+                        <a
+                            href={githubLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                            className="
+                inline-flex items-center gap-2
+                px-5 py-2
+                bg-teal-500 hover:bg-teal-600
+                rounded-lg
+                text-white font-semibold
+                transition
+                text-sm
+                shadow-md
+              "
+                            aria-label={`View ${title} on GitHub`}
+                        >
+                            <FaGithub /> GitHub
+                        </a>
+                    )}
+                    <button
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            setIsOpen(true);
+                        }}
+                        className="
+              px-5 py-2
+              bg-gray-700 hover:bg-gray-600
+              rounded-lg
+              text-white font-semibold
+              transition
+              text-sm
+              shadow-md
+            "
+                        aria-haspopup="dialog"
+                        aria-expanded={isOpen}
+                    >
+                        Details
+                    </button>
+                </div>
             </div>
 
             {/* Modal Overlay */}
@@ -72,44 +124,46 @@ const ProjectCard = ({ title, desc, image, fullDesc, githubLink }) => {
                     aria-modal="true"
                     aria-labelledby="modal-title"
                     onClick={() => setIsOpen(false)}
-                    className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4"
+                    className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-6"
                 >
-                    {/* Modal content */}
+                    {/* Modal Content */}
                     <div
                         onClick={(e) => e.stopPropagation()}
-                        className="bg-gray-900 rounded-xl max-w-full sm:max-w-3xl p-6 sm:p-8 text-gray-200 shadow-xl animate-fadeIn scale-up overflow-y-auto max-h-[90vh]"
+                        className="bg-gray-900 rounded-3xl max-w-full sm:max-w-4xl p-10 text-gray-200 shadow-2xl overflow-y-auto max-h-[90vh] animate-fadeIn scale-up"
                     >
                         <h2
                             id="modal-title"
-                            className="text-2xl sm:text-3xl font-bold mb-4"
+                            className="text-4xl font-bold mb-6 flex items-center gap-3"
                         >
+                            <FaFolderOpen className="text-teal-400" />
                             {title}
                         </h2>
+
                         {image && (
                             <img
                                 src={image}
                                 alt={title}
-                                className="w-full max-h-56 sm:max-h-72 object-cover rounded-lg mb-6 mx-auto"
+                                className="w-full max-h-96 object-cover rounded-xl mb-8 mx-auto shadow-lg"
                             />
                         )}
-                        <p className="text-sm sm:text-base whitespace-pre-line">
-                            {fullDesc || desc}
-                        </p>
+
+                        <p className="text-lg whitespace-pre-line">{fullDesc || desc}</p>
 
                         {githubLink && (
                             <a
                                 href={githubLink}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-block mt-6 mr-4 px-6 py-2 bg-gray-800 hover:bg-gray-700 rounded-md text-white font-semibold transition"
+                                className="inline-flex items-center mt-8 px-8 py-3 bg-gray-800 hover:bg-gray-700 rounded-lg text-white font-semibold transition gap-3 text-lg"
                             >
+                                <FaGithub />
                                 View on GitHub
                             </a>
                         )}
 
                         <button
                             onClick={() => setIsOpen(false)}
-                            className="mt-6 px-6 py-2 bg-teal-500 hover:bg-teal-600 rounded-md text-white font-semibold"
+                            className="mt-10 px-8 py-3 bg-teal-500 hover:bg-teal-600 rounded-lg text-white font-semibold text-lg"
                         >
                             Close
                         </button>
@@ -124,6 +178,20 @@ const ProjectCard = ({ title, desc, image, fullDesc, githubLink }) => {
         }
         .scale-up {
           animation: scaleUp 0.3s ease forwards;
+        }
+        /* Clamp multiline text */
+        .line-clamp-5 {
+          display: -webkit-box;
+          -webkit-line-clamp: 5;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.5s ease forwards;
+        }
+        @keyframes fadeIn {
+          from {opacity: 0;}
+          to {opacity: 1;}
         }
       `}</style>
         </>
