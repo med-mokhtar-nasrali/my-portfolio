@@ -69,7 +69,7 @@ const PROJECTS = [
     shortDesc: "Interactive architecture showcase with 3D tours and AI assistance.",
     fullDesc: "A cutting-edge architectural platform allowing users to take immersive virtual tours of properties via 3D models. The system features a real-time AI Chatbot linked to the database to answer queries about house availability and details. Includes a secure Admin Dashboard for architects to modify property specs, manage assets via Cloudinary, and track user inquiries in real-time.",
     features: ["3D Virtual Tours", "AI Real-Estate Chatbot", "Admin/Architect Dashboard", "Real-time Availability"],
-    tech: ["React", "MySQL", "Tailwind", "Cloudinary", "JWT", "Sonner"],
+    tech: ["React", "Express", "MySQL", "Tailwind", "Cloudinary", "JWT", "Sonner"],
     image: "/3d.png",
     gradient: "bg-stone-100",
     github: "#",
